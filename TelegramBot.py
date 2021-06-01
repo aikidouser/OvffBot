@@ -1,11 +1,10 @@
 import telepot
 import time
 import sys
+import json
 from pprint import pprint
 from ReqOvff import search_ovff
 from telepot.loop import MessageLoop
-
-bot = telepot.Bot('1788200432:AAGRjgv5f98swon8CUiWK6FmFLkfDpcTGtA')
 
 def handle(msg):
     pprint(msg)
@@ -20,12 +19,17 @@ def handle(msg):
     
     bot.sendMessage(chat_id, s)
 
-
-
-MessageLoop(bot, handle).run_as_thread()
-print("I'm listening...")
-
-while 1:
-    time.sleep(5)
+if __name__ == '__main__':
+    
+    with open ('Token.json', 'r') as json_file:
+        data = json.load(json_file)
+    
+    bot = telepot.Bot(data['token'])
+    
+    MessageLoop(bot, handle).run_as_thread()
+    print("I'm listening...")
+    
+    while 1:
+        time.sleep(5)
 
     
