@@ -34,7 +34,7 @@ def search_ovff(dest):
     responce = requests.get(basic_url)
     soup = BeautifulSoup(responce.text, "html.parser")
     
-    tbody = soup.find("tbody").select("ul")
+    tbody = list(soup.find("tbody").select("ul"))
     
     for i, text in enumerate(tbody):
         print(dest[i])
@@ -46,7 +46,8 @@ def search_ovff(dest):
             final_out.append(outs)
             print(outs)
         
-        final_out.append('-------')
+        if i != len(tbody) - 1:
+            final_out.append('-------')
         
     return final_out
     
