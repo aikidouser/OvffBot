@@ -5,20 +5,38 @@ import json
 from pprint import pprint
 from ReqOvff import search_ovff
 from telepot.loop import MessageLoop
+from telepot.exception import TelegramError
 
 def handle(msg):
-    pprint(msg)
-    chat_id = msg['chat']['id']
-    output = search_ovff(msg['text'])
+    #pprint(msg)
+    content_type, chat_type, chat_id = telepot.glance(msg)
+    
+    if content_type == 'text':
+        
+        if msg['text'] == '/help':
+            re_msg = '此機器人是來嘸蝦米查碼的喔\n僅只援繁體中文'
+            bot.sendMessage(chat_id, re_msg)
+            return
+        
+        output = search_ovff(msg['text'])
+    
+    else:
+        re_msg = '不要玩我'
+        bot.sendMessage(chat_id, re_msg)
+        return
     
     s = ''
-    print(output)
-    for t in output:
-        
+    #print(output)
+    for t in output:    
         s += t + '\n'
     
-    bot.sendMessage(chat_id, s)
-
+    try:
+        bot.sendMessage(chat_id, s)
+    
+    except TelegramError:
+        re_msg = '只可以輸入中文喔'
+        bot.sendMessage(chat_id, re_msg)
+    
 if __name__ == '__main__':
     
     with open ('Token.json', 'r') as json_file:

@@ -37,14 +37,14 @@ def search_ovff(dest):
     tbody = list(soup.find("tbody").select("ul"))
     
     for i, text in enumerate(tbody):
-        print(dest[i])
+        #print(dest[i])
         final_out.append(dest[i])
         for outs in text.select("li"):
             outs = outs.getText()
             outs = outs.split("　")[0]
             outs = full2half(outs)
             final_out.append(outs)
-            print(outs)
+            #print(outs)
         
         if i != len(tbody) - 1:
             final_out.append('-------')
