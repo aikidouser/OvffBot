@@ -48,8 +48,12 @@ def search_ovff(dest):
         
         if i != len(tbody) - 1:
             final_out.append('-------')
-        
-    return final_out
+    
+    msg = str()
+    for out in final_out:
+        msg += out + '\n'
+    
+    return msg
     
 if __name__ == "__main__":
     
