@@ -1,6 +1,10 @@
 #%%
 import requests
+import logging
 from bs4 import BeautifulSoup
+
+#%%
+logger = logging.getLogger(__name__)
 
 #%%
 def full2half(s):
@@ -52,7 +56,7 @@ def search_ovff(dest):
     msg = str()
     for out in final_out:
         msg += out + '\n'
-    
+
     return msg
     
 if __name__ == "__main__":
