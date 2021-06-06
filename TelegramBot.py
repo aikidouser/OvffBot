@@ -14,45 +14,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 logger = logging.getLogger(__name__)
 
 #%%
-# =============================================================================
-# def handle(msg):
-#     pprint(msg)
-#     msg.key()
-#     content_type, chat_type, chat_id = telepot.glance(msg)
-#     
-#     if content_type == 'text':
-#         
-#         if msg['text'] == '/help':
-#             re_msg = '此機器人是來嘸蝦米查碼的喔\n僅只援繁體中文'
-#             bot.sendMessage(chat_id, re_msg)
-#             return
-#         
-#         elif msg['text'] == '/start':
-#             re_msg = '先來嘗試輸人個中文字吧'
-#             bot.sendMessage(chat_id, re_msg)
-#             return
-#         
-#         output = search_ovff(msg['text'])
-#     
-#     else:
-#         re_msg = '不要玩我'
-#         bot.sendMessage(chat_id, re_msg)
-#         return
-#     
-#     s = ''
-#     #print(output)
-#     for t in output:    
-#         s += t + '\n'
-#     
-#     try:
-#         bot.sendMessage(chat_id, s)
-#     
-#     except TelegramError:
-#         re_msg = '只可以輸入中文喔'
-#         bot.sendMessage(chat_id, re_msg)
-# =============================================================================
-        
-#%%
 def start_command(update: Update, _: CallbackContext):
     
     re_msg = '先來嘗試輸人個中文字吧'
