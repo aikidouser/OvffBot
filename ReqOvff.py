@@ -4,6 +4,8 @@ import logging
 from bs4 import BeautifulSoup
 
 #%%
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 #%%
@@ -43,11 +45,14 @@ def search_ovff(dest):
     for i, text in enumerate(tbody):
         #print(dest[i])
         final_out.append(dest[i])
-        for outs in text.select("li"):
-            outs = outs.getText()
-            outs = outs.split("　")[0]
-            outs = full2half(outs)
-            final_out.append(outs)
+        for code in text.select("li"):
+            code = code.getText()
+            code = code.split("　")
+            out = full2half(code[0])
+            if len(code) == 2:
+                out += '*'
+                
+            final_out.append(out)
             #print(outs)
         
         if i != len(tbody) - 1:
@@ -58,10 +63,11 @@ def search_ovff(dest):
         msg += out + '\n'
 
     return msg
-    
+ 
+#%% only for test   
 if __name__ == "__main__":
     
-    dest = input()
+    dest = '鐵織品犧整'
     output = search_ovff(dest)
     
     print(output)
