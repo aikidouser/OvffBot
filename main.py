@@ -29,7 +29,7 @@ def call_ovff(update: Update, context: CallbackContext):
     
     # 會顯示chatbot正在輸入中，增加對話真實感
     context.bot.send_chat_action(chat_id = update.message.chat_id, action = telegram.ChatAction.TYPING) 
-
+    
     if len(update.message.text) < 6:
         re_msg = search_ovff(update.message.text)
     else:
@@ -45,7 +45,7 @@ def call_ovff(update: Update, context: CallbackContext):
 
 #%%
 def msg_except(update: Update, context: CallbackContext):
-    
+
     pass
 
 #%% 
@@ -72,6 +72,8 @@ if __name__ == '__main__':
     # else
     dispatcher.add_handler(MessageHandler(~Filters.text & ~Filters.command, msg_except))
     
+    # error
+    dispatcher.add_error_handler(msg_except)
     
     updater.start_polling()
     logger.info('Listening')
