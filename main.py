@@ -1,8 +1,7 @@
-#%%
+import sys
 import json
 import logging
 import telegram
-from pprint import pprint
 from ReqOvff import search_ovff
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
@@ -43,17 +42,15 @@ def call_ovff(update: Update, context: CallbackContext):
     else:
         update.message.reply_text('只可以輸入中文喔')
 
-#%%
+
 def msg_except(update: Update, context: CallbackContext):
 
     pass
 
-#%% 
+
 if __name__ == '__main__':
     
-    with open ('Token.json', 'r') as json_file:
-        data = json.load(json_file)
-    TOKEN = data['token']
+    TOKEN = sys.argv[1]
     
     updater = Updater(TOKEN)
     dispatcher = updater.dispatcher
